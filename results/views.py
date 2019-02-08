@@ -45,7 +45,6 @@ def declare_result_view(request):
         data.pop('select_class')
         data.pop('select_student')
         DeclareResult.objects.create(select_class=clas, select_student=student, marks=data)
-        print('\nResult Created\n')
     else:
         form = DeclareResultForm()
         context['main_page_title'] = 'Declare Students Result'
@@ -59,9 +58,7 @@ def setup_update_view(request):
     if request.method == "GET":
         pk_value = int(request.GET['pk_value'])
         result_obj = get_object_or_404(DeclareResult, pk = pk_value)
-        print('\n',result_obj,'\n')
         dt = result_obj.marks
-        print('\nAll Marks = ',dt,'\n')
         data['dt'] = dt
         return HttpResponse(json.dumps(data), content_type="application/json")
     return HttpResponse(json.dumps(data), content_type="application/json")

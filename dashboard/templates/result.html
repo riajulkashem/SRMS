@@ -35,8 +35,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Totall Mark</th>
-                        <th scope="col">Mark</th>
-                        <th scope="col">Download</th>
+                        <th scope="col" id="totall_mark"></th>
+                        <th scope="col"><a href="https://www.sejda.com/html-to-pdf?save-link" target="_blank">Download as PDF</a></th>
                     </tr>
                 </thead>
             </table>
@@ -65,15 +65,29 @@
             success: function (data) {
                 dt = data.dt
                 size = Object.keys(dt).length / 2
+                var totall_mark = 0
                 for (let i = 0; i < size; i++) {
-                    html = '<tr><th scope = "row" >'+i+'</th ><th scope="row">' + dt['subject_'+i] +'</th> <th scope="row">' + dt['subject_' + i+'_mark'] +'</th><td>GPA</td></tr>'
+                    html = '<tr><th scope = "row" >'+i+'</th ><th scope="row">' + dt['subject_'+i] +'</th> <th scope="row">' + dt['subject_' + i+'_mark'] +'</th><td>'+GPA(dt['subject_' + i + '_mark'])+'</td></tr>'
+                    totall_mark += parseInt(dt['subject_' + i + '_mark'])
                     $('#table-row').append(html)
                 }
+                $('#totall_mark').text(totall_mark)
+                totall_mark = 0
             },
             error: function (error) {
                 alert("Ooops!! error" + error)
             }
         })
+
+        function GPA(mark){
+            if (mark >= 89) { return 'A+' }
+            else if (mark >= 79) { return 'A' }
+            else if (mark >= 69) { return 'B-' }
+            else if (mark >= 59) { return 'B' }
+            else if (mark >= 59) { return 'C' }
+            else if (mark >= 49) { return 'D' }
+            else if (mark >= 49) { return 'Fail' }
+        }
     })
     </script>
 {% endblock javascript_code %}

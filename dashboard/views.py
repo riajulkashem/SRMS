@@ -32,7 +32,6 @@ def index(request):
             return render(request, 'index.html', context)
     return render(request, 'index.html', {'name': 'Riajul Kashem', 'pass': 'login@srms'})
 
-
 class DashboardView(LoginRequiredMixin,TemplateView):
     template_name = "dashboard.html"
 
