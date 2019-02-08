@@ -9,7 +9,7 @@ class StudentClass(models.Model):
     creation_date           =   models.DateTimeField(auto_now=False, auto_now_add=True)
 
     def get_absolute_url(self):
-        return reverse('student_classes:create_class')
+        return reverse('student_classes:class_list')
 
     def __str__(self):
         return "%s Section-%s"%(self.class_name, self.section)

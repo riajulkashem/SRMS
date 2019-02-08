@@ -23,8 +23,6 @@ def index(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        print("\nUser Name = ",username)
-        print("Password = ",password)
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)

@@ -16,7 +16,7 @@ class SubjectCreateView(LoginRequiredMixin, CreateView):
         context = super(SubjectCreateView, self).get_context_data(**kwargs)
         context['main_page_title'] = 'Subject Creation'
         context['panel_name'] = 'Subjects'
-        context['panel_title'] = 'Create Subject'
+        context['panel_title'] = 'Add Subject'
         return context
 
 class SubjectListView(LoginRequiredMixin, ListView):

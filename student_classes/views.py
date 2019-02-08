@@ -15,9 +15,9 @@ class StudentClassCreateView(LoginRequiredMixin, CreateView):
     
     def get_context_data(self, **kwargs):
         context = super(StudentClassCreateView, self).get_context_data(**kwargs)
-        context['main_page_title'] = 'Create Student Class'
+        context['main_page_title'] = 'Add Student Class'
         context['panel_name'] = 'Classes'
-        context['panel_title'] = 'Create Class'
+        context['panel_title'] = 'Add Class'
         return context
 
 class StudentClassListView(LoginRequiredMixin, ListView):
