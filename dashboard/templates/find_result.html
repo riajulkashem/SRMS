@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+
+{% block main_wrapper %}
+    <div class="login-bg-color bg-black-300">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel login-box">
+                    <div class="panel-heading">
+                        <div class="panel-title text-center">
+                            <h4>School Result Management System</h4>
+                        </div>
+                        <div id="query_alert">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body p-20">
+                        <form class="query-form" method="post"> {% csrf_token %}
+                            <div class="form-group">
+                                <label for="rollid">Enter your Roll Id</label>
+                                <input type="text" class="form-control" id="rollid" placeholder="Enter Your Roll Id"
+                                    autocomplete="off" name="rollid">
+                            </div>
+                            <div class="form-group">
+                                <label for="default" class="col-sm-2 control-label">Class</label>
+                                <select name="class" class="form-control" id="default" required="required">
+                                    <option value="">Select Class</option>
+                                    
+                                    {% for cls in class %}
+                                        <option value="{{ cls.id }}">{{ cls }}</option>
+                                    {% endfor %}
+                                        
+                                </select>
+                            </div>
+    
+    
+                            <div class="form-group mt-20">
+                                <div class="">
+    
+                                    <button type="submit" class="btn btn-success btn-labeled pull-right">Search<span class="btn-label btn-label-right"><i
+                                                class="fa fa-check"></i></span></button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-6">
+                                <a href="{% url 'home' %}">Back to Home</a>
+                            </div>
+                        </form>
+    
+                        <hr>
+    
+                    </div>
+                </div>
+                <!-- /.panel -->
+                <p class="text-muted text-center"><small>Copyright © <a href="http://facebook.com/riajul.kashem">Riajul Kashem</a> 2019</small></p>
+            </div>
+            <!-- /.col-md-6 col-md-offset-3 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /. -->
+{% endblock main_wrapper %}
+
+
+{% block javascript_code %}
+    <script>
+        $(document).ready(function(){
+            console.log("Document Ready")
+            var myForm = $('.query-form')
+            myForm.submit(function(e){
+                e.preventDefault()
+                var $formData = $(this).serialize()
+                console.log($formData)
+               $.ajax({
+                    method: "POST",
+                    url: window.location.href,
+                    data: $formData,
+                    success: function (json) {
+                        $obj = JSON.parse(json.pk)
+                        console.log($obj)
+                        if ($obj == '0') {
+                            alert("No Result Found With This Roll No and Class Name\nTry valid one")
+                            window.location.reload()
+                        }else{
+                            window.location = 'http://127.0.0.1:8000/dashboard/find-result/' + $obj + '/result/'
+                        }
+                    },
+                    error: function(error){
+                        alert("Ooops !! Error")
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock javascript_code %}
+    

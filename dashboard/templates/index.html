@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+
+{% block main_wrapper %}
+    
+    <div class="">
+        <div class="row">
+            <h1 align="center">Student Result Management System</h1>
+            <div class="col-lg-6 visible-lg-block">
+
+                <section class="section">
+                    <div class="row mt-40">
+                        <div class="col-md-10 col-md-offset-1 pt-50">
+
+                            <div class="row mt-30 ">
+                                <div class="col-md-11">
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            <div class="panel-title text-center">
+                                                <h4>For Students</h4>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body p-20">
+
+                                            <div class="section-title">
+                                                <p class="sub-title">Student Result Management System</p>
+                                            </div>
+
+                                            <form class="form-horizontal" method="post">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-6 control-label">Search
+                                                        your result</label>
+                                                    <div class="col-sm-6">
+                                                        <a href="{% url 'dashboard:find_result' %}">click here</a>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <!-- /.panel -->
+
+                                </div>
+                                <!-- /.col-md-11 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.col-md-12 -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+            </div>
+            <div class="col-lg-6">
+                <section class="section">
+                    <div class="row mt-40">
+                        <div class="col-md-10 col-md-offset-1 pt-50">
+
+                            <div class="row mt-30 ">
+                                <div class="col-md-11">
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            <div class="panel-title text-center">
+                                                <h4>Admin Login </h4>
+                                                <h4>Username: {{ admin.username }}</h4>
+                                                <h4>Password: {{ admin.password }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body p-20">
+
+                                            <div class="section-title">
+                                                <p class="sub-title">Student Result Management System</p>
+                                            </div>
+
+                                            <form class="form-horizontal" method="post"> {% csrf_token %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ message }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">Name:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="username" class="form-control" id="inputEmail3"
+                                                            placeholder="UserName">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="password" name="password" class="form-control" id="inputPassword3"
+                                                            placeholder="Password">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mt-20">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+
+                                                        <button type="submit" name="login" class="btn btn-success btn-labeled pull-right">Sign
+                                                            in<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <!-- /.panel -->
+                                    <p class="text-muted text-center"><small>Copyright © <a href="https://web.facebook.com/riajul.kashem">Riajul Kashem</a> 2019</small></p>
+                                </div>
+                                <!-- /.col-md-11 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.col-md-12 -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+
+            </div>
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    
+{% endblock main_wrapper %}
+    

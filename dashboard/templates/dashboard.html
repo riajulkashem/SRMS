@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+
+{% block main_page_title %}
+    Dashboard
+{% endblock main_page_title %}
+    
+
+{% block main_page_content %}
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat bg-primary" href="{% url 'students:student_list' %}">
+    
+                <span class="number counter">{{ students }}</span>
+                <span class="name">Regd Studetns</span>
+                <span class="bg-icon"><i class="fa fa-users"></i></span>
+            </a>
+            <!-- /.dashboard-stat -->
+        </div>
+        <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
+    
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat bg-danger" href="{% url 'subjects:subject_list' %}">
+                <span class="number counter">{{ subjects }}</span>
+                <span class="name">Subjects Listed</span>
+                <span class="bg-icon"><i class="fa fa-ticket"></i></span>
+            </a>
+            <!-- /.dashboard-stat -->
+        </div>
+        <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
+    
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat bg-warning" href="{% url 'student_classes:class_list' %}">
+                <span class="number counter">{{ cls }}</span>
+                <span class="name">Total classes listed</span>
+                <span class="bg-icon"><i class="fa fa-bank"></i></span>
+            </a>
+            <!-- /.dashboard-stat -->
+        </div>
+        <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
+    
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat bg-success" href="{% url 'results:result_list' %}">
+    
+                <span class="number counter">{{ results }}</span>
+                <span class="name">Results Declared</span>
+                <span class="bg-icon"><i class="fa fa-file-text"></i></span>
+            </a>
+            <!-- /.dashboard-stat -->
+        </div>
+        <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
+    
+    </div>
+    <!-- /.row -->
+{% endblock main_page_content %}
+
+{% block javascript_code %}
+    <script>
+        $(function () {
+
+            // Counter for dashboard stats
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+
+            // Welcome notification
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr["success"]("Welcome to student Result Management System!");
+
+        });
+    </script>
+{% endblock javascript_code %}
+    

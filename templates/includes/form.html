@@ -1,0 +1,28 @@
+<form method="post">{% csrf_token %}
+
+    {% for field in form %}
+    <div class="form-group has-success">
+        
+        {% if field.errors %}
+            
+            <div class="alert alert-danger" role="alert">
+                {{ field.errors }}
+            </div>
+                
+        {% endif %}
+        <label for="success" class="control-label">{{ field.label_tag }}</label>
+        {{ field }}
+
+        {% if field.help_text %}
+        <span class="help-block">{{ field.help_text|safe }}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <div class="form-group has-success">
+
+        <div class="">
+            <button type="submit" name="submit" class="btn btn-success btn-labeled">Submit<span class="btn-label btn-label-right"><i
+                        class="fa fa-check"></i></span></button>
+        </div>
+    </div>
+</form>

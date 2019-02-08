@@ -1,0 +1,59 @@
+<div class="col-md-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>
+                    {% block panel_title %}
+                        {{ panel_title }}
+                    {% endblock panel_title %}</h5>
+            </div>
+        </div>
+        <div class="panel-body p-20">
+            <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_length" id="example_length"><label>Show <select name="example_length" aria-controls="example"
+                                    class="form-control input-sm">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select> entries</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div id="example_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm"
+                                    placeholder="" aria-controls="example"></label></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%"
+                            role="grid" aria-describedby="example_info" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending"
+                                        style="width: 30px;">#</th>
+            
+                                    {% for field in field_list %}
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="{{ field }}: activate to sort column ascending"
+                                        style="width: auto;">{{ field }}</th>
+                                    {% endfor %}
+            
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending"
+                                        style="width: 86px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">#</th>
+            
+                                    {% for field in field_list %}
+                                    <th rowspan="1" colspan="1">{{ field }}</th>
+                                    {% endfor %}
+            
+                                    <th rowspan="1" colspan="1">Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                

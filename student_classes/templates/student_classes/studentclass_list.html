@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %}
+{{ main_page_title }}
+{% endblock main_page_title %}
+
+{% block breadcumb %}
+<li><a href="{% url 'student_classes:class_list' %}">{{ panel_name }}</a></li>
+<li class="active">{{ panel_title }}</li>
+{% endblock breadcumb %}
+
+{% block panel_title %}
+{{ panel_title }}
+{% endblock panel_title %}
+
+{% block panel %}
+{% include 'includes/manage_panel_top.html' %}
+{% for object in object_list %}
+<tr role="row" class="odd">
+    <td class="">{{ object.id }}</td>
+    <td>{{ object.class_name }}</td>
+    <td class="sorting_1">{{ object.class_name_in_numeric }}</td>
+    <td>{{ object.section }}</td>
+    <td>{{ object.creation_date }}</td>
+    <td>
+        <a href="{% url 'student_classes:update_class' object.id %}" class="btn btn-primary"><i class="fa fa-edit" title="Edit Record"></i>
+        </a>
+        <a href="{% url 'student_classes:delete_class' object.id %}" class="btn btn-danger"><i class="fa fa-trash" title="Delete Record"></i>
+        </a>
+
+    </td>
+</tr>
+{% endfor %}
+{% include 'includes/manage_panel_bottom.html' %}
+{% endblock panel %}
+
+
+{% block javascript_code %}
+    <script>
+        
+    </script>
+{% endblock javascript_code %}

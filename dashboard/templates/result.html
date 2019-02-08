@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+{% block main_wrapper %}
+    <div class="container-fluid" style="background-color:white">
+        <div class="row text-center d-block">
+            <h2 class="text-primary bold pb-25"><a href="{% url 'home' %}">Student Result Management System</a></h2>
+        </div>
+        <div class="container" id="marksheet">
+            <p>
+                <b>Student Name     : </b>  {{ object.select_student.student_name }}
+            </p>
+            <p>
+                <b>Student Class    : </b>  {{ object.select_class.class_name }}   ( <b>{{ object.select_class.section }}</b> )
+            </p>
+            <p>
+                <b>Student Roll : </b> {{ object.select_student.student_roll }}
+            </p>
+            <h2 class="text-center text-primary">Mark Sheet</h2>
+            
+            <p id="pk" style="display:none">{{ pk }}</p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Subject Name</th>
+                        <th scope="col">Mark</th>
+                        <th scope="col">GPA</th>
+                    </tr>
+                </thead>
+                <tbody id="table-row">
+                    
+                </tbody>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Totall Mark</th>
+                        <th scope="col">Mark</th>
+                        <th scope="col">Download</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+        <div class="shadow-lg p-3">
+            <span class="link"><a href="{% url 'home' %}">Back To Home</a></span>
+        </div>
+    </div>   
+    
+{% endblock main_wrapper %}
+
+
+{% block javascript_code %}
+    <script>
+    $(document).ready(function(){
+        var pk_value = $('#pk').text()
+        // Sending Primary Key and Setup Update Form
+        $.ajax({
+            method: 'GET',
+            url: '/results/declare/setup/',
+            dataType: 'json',
+            data: {
+                'pk_value': pk_value
+            },
+            success: function (data) {
+                dt = data.dt
+                size = Object.keys(dt).length / 2
+                for (let i = 0; i < size; i++) {
+                    html = '<tr><th scope = "row" >'+i+'</th ><th scope="row">' + dt['subject_'+i] +'</th> <th scope="row">' + dt['subject_' + i+'_mark'] +'</th><td>GPA</td></tr>'
+                    $('#table-row').append(html)
+                }
+            },
+            error: function (error) {
+                alert("Ooops!! error" + error)
+            }
+        })
+    })
+    </script>
+{% endblock javascript_code %}
+    
+    

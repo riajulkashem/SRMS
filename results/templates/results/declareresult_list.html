@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %}
+{{ main_page_title }}
+{% endblock main_page_title %}
+
+{% block breadcumb %}
+<li><a href="{% url 'results:result_list' %}">{{ panel_name }}</a></li>
+<li class="active">{{ panel_title }}</li>
+{% endblock breadcumb %}
+
+{% block panel_title %}
+{{ panel_title }}
+{% endblock panel_title %}
+
+{% block panel %}
+{% include 'includes/manage_panel_top.html' %}
+{% for object in object_list %}
+<tr role="row" class="odd">
+    <td class="">{{ object.id }}</td>
+    <td class="">{{ object.select_student.student_name }}</td>
+    <td class="">{{ object.select_student.student_roll }}</td>
+    <td class="">{{ object.select_student.student_class }}</td>
+    <td class="">{{ object.select_student.student_reg }}</td>
+    <td class="">{{ object.marks.subject_0_mark }} | {{ object.marks.subject_1_mark }} | {{ object.marks.subject_2_mark }}</td>
+    <td>
+        <a href="{% url 'results:update_result' object.id %}" class="btn btn-primary"><i class="fa fa-edit" title="Edit Record"></i>
+        </a>
+        <a href="{% url 'results:delete_result' object.id %}" class="btn btn-danger"><i class="fa fa-trash" title="Delete Record"></i>
+        </a>
+
+    </td>
+</tr>
+{% endfor %}
+{% include 'includes/manage_panel_bottom.html' %}
+{% endblock panel %}
+
+
+{% block javascript_code %}
+<script>
+</script>
+{% endblock javascript_code %}

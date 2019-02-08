@@ -1,0 +1,103 @@
+{% load static %}
+{% include 'snipets/header_static_files.html' %}
+
+<body class="top-navbar-fixed">
+<div class="main-wrapper">
+    
+    {% block main_wrapper %}
+        <div class="content-wrapper">
+            <div class="content-container">
+        
+                <div class="left-sidebar bg-black-300 box-shadow ">
+                    <div class="sidebar-content">
+                        <div class="user-info closed">
+                            <img src="{% static 'images/profile.jpg' %}" alt="Riajul Kashem" class="img-circle profile-img " width="100px" height="100px">
+                            <h6 class="title">Riajul Kashem</h6>
+                            <small class="info">Django Developer</small>
+                        </div>
+                        <!-- /.user-info -->
+                        {% include 'snipets/sidebar_nav.html' %}
+                        <!-- /.sidebar-nav -->
+                    </div>
+                    <!-- /.sidebar-content -->
+                </div>
+        
+                <div class="main-page">
+        
+                    {% block main_page %}
+                    <div class="container-fluid">
+                        <div class="row page-title-div">
+                            <div class="col-sm-6">
+                                <h2 class="title">
+        
+                                    {% block main_page_title %}
+        
+                                    {% endblock main_page_title %}
+        
+                                </h2>
+                            </div>
+                            <!-- /.col-sm-6 -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row breadcrumb-div">
+                            <div class="col-md-6">
+                                <ul class="breadcrumb">
+                                    <li><a href="{% url 'dashboard:dashboard' %}"><i class="fa fa-home"></i> Home</a></li>
+                                    {% block breadcumb %}
+        
+                                    {% endblock breadcumb %}
+        
+                                </ul>
+                            </div>
+        
+                        </div>
+                        <!-- /.row -->
+        
+                    </div>
+                    <!-- /.container-fluid -->
+        
+                    <section class="section">
+                        <div class="container-fluid">
+        
+                            {% block main_page_content %}
+                            <div class="row">
+        
+                                {% block panel %}
+        
+                                {% endblock panel %}
+        
+                                <!-- /.col-md-8 col-md-offset-2 -->
+                            </div>
+                            <!-- /.row -->
+        
+                            {% endblock main_page_content %}
+        
+                        </div>
+                        <!-- /.container-fluid -->
+                    </section>
+                    <!-- /.section -->
+                    {% endblock main_page %}
+        
+                </div>
+                <!-- /.main-page -->
+        
+        
+            </div>
+            <!-- /.content-container -->
+        </div>
+        <!-- /.content-wrapper -->
+        {% include 'snipets/nav.html' %}
+    {% endblock main_wrapper %}
+        
+</div>
+<!-- /.main-wrapper -->
+        
+ {% include 'snipets/footer_static_files.html' %}
+
+{% block javascript_code %}
+
+{% endblock javascript_code %}
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block top_js %}
+
+{% endblock top_js %}
+
+{% block main_page_title %}
+{{ main_page_title }}
+{% endblock main_page_title %}
+
+{% block breadcumb %}
+<li><a href="{% url 'results:result_list' %}">{{ panel_name }}</a></li>
+<li class="active">{{ panel_title }}</li>
+{% endblock breadcumb %}
+
+{% block panel %}
+<div class="col-md-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>{{ panel_title }}</h5>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal text-center" method="post" data-url="{{ request.build_absolute_uri | safe }}">{% csrf_token %}
+                <h2>Are you sure you want to delete result of "{{ object.select_student }}"?</h2>
+                <input type="submit" value="Confirm" class="btn btn-danger">
+                <button class="btn btn-primary"><a href="{% url 'results:result_list' %}">Cancel</a></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock panel %}
