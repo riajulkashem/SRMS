@@ -6,4 +6,4 @@ Student Result Management System
 ## Screenshots
 #### You can easily manage your school result using this application  
 
-![Dashboard](/SRMS/Screenshots/dashboard.png "SRMS Dashboard")
+![Dashboard](Screenshots/dashboard.png "SRMS Dashboard")
