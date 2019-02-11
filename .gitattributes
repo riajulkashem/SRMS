@@ -1,1 +1,1 @@
-*.js linguist-language=django
+*.js *.html *.css linguist-language=django
