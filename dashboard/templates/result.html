@@ -6,39 +6,41 @@
         <div class="row text-center d-block">
             <h2 class="text-primary bold pb-25"><a href="{% url 'home' %}">Student Result Management System</a></h2>
         </div>
+        <h4 style="text-align:right"><a href="{% url 'dashboard:pdf' id=object.id %}" target="_blank">Save as PDF</a></h4>
         <div class="container" id="marksheet">
             <p>
-                <b>Student Name     : </b>  {{ object.select_student.student_name }}
+                <b>Student Name     : </b>  {{ object.select_student.student_name | safe }}
             </p>
             <p>
-                <b>Student Class    : </b>  {{ object.select_class.class_name }}   ( <b>{{ object.select_class.section }}</b> )
+                <b>Student Class    : </b>  {{ object.select_class.class_name }}   ( <b>{{ object.select_class.section | safe }}</b> )
             </p>
             <p>
-                <b>Student Roll : </b> {{ object.select_student.student_roll }}
+                <b>Student Roll : </b> {{ object.select_student.student_roll | safe }}
             </p>
             <h2 class="text-center text-primary">Mark Sheet</h2>
             
-            <p id="pk" style="display:none">{{ pk }}</p>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Subject Name</th>
                         <th scope="col">Mark</th>
-                        <th scope="col">GPA</th>
                     </tr>
                 </thead>
                 <tbody id="table-row">
                     
+                    {% for mark in marks %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            
+                            {% for m in mark %}
+                                <td>{{ m }}</td>
+                            {% endfor %}
+                                
+                        </tr>
+                    {% endfor %}
+                        
                 </tbody>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Totall Mark</th>
-                        <th scope="col" id="totall_mark"></th>
-                        <th scope="col"><a href="https://www.sejda.com/html-to-pdf?save-link" target="_blank">Download as PDF</a></th>
-                    </tr>
-                </thead>
             </table>
         </div>
         
@@ -48,48 +50,4 @@
     </div>   
     
 {% endblock main_wrapper %}
-
-
-{% block javascript_code %}
-    <script>
-    $(document).ready(function(){
-        var pk_value = $('#pk').text()
-        // Sending Primary Key and Setup Update Form
-        $.ajax({
-            method: 'GET',
-            url: '/results/declare/setup/',
-            dataType: 'json',
-            data: {
-                'pk_value': pk_value
-            },
-            success: function (data) {
-                dt = data.dt
-                size = Object.keys(dt).length / 2
-                var totall_mark = 0
-                for (let i = 0; i < size; i++) {
-                    html = '<tr><th scope = "row" >'+i+'</th ><th scope="row">' + dt['subject_'+i] +'</th> <th scope="row">' + dt['subject_' + i+'_mark'] +'</th><td>'+GPA(dt['subject_' + i + '_mark'])+'</td></tr>'
-                    totall_mark += parseInt(dt['subject_' + i + '_mark'])
-                    $('#table-row').append(html)
-                }
-                $('#totall_mark').text(totall_mark)
-                totall_mark = 0
-            },
-            error: function (error) {
-                alert("Ooops!! error" + error)
-            }
-        })
-
-        function GPA(mark){
-            if (mark >= 89) { return 'A+' }
-            else if (mark >= 79) { return 'A' }
-            else if (mark >= 69) { return 'B-' }
-            else if (mark >= 59) { return 'B' }
-            else if (mark >= 59) { return 'C' }
-            else if (mark >= 49) { return 'D' }
-            else if (mark >= 49) { return 'Fail' }
-        }
-    })
-    </script>
-{% endblock javascript_code %}
-    
-    
+  
