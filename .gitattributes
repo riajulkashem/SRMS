@@ -1,0 +1,4 @@
+*.css
+*.js
+*.html
+ linguist-language=django
