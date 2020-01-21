@@ -1,0 +1,12 @@
+asgiref==3.2.3
+Django==2.2
+html5lib==1.0.1
+jsonfield==2.0.2
+Pillow==7.0.0
+PyPDF2==1.26.0
+pytz==2019.3
+reportlab==3.5.32
+six==1.13.0
+sqlparse==0.3.0
+webencodings==0.5.1
+xhtml2pdf==0.2.3
