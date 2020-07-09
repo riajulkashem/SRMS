@@ -6,6 +6,8 @@ Student Result Management System
 
 Student Result Management System is my first Django project!! It's single user application where user can CRUD (Create, Update, Delete) student, subject, subject combination and result. Then students can view there result and download this as PDF file. This project is live now in http://srms.riajul.me/ feel free to contribute this project and **if you like this project dont't forget to give a star** 
 
+**I'm available for freelance hire contact me in [Facebook](https://web.facebook.com/riajul.kashem/) or riajukashem@gmail.com **
+
 ![Dashboard](Screenshots/dashboard.png "SRMS Dashboard")
 
 ## Running the Project Locally
