@@ -17,16 +17,26 @@ First, clone the repository to your local machine:
 ```bash
 git clone https://github.com/RiajulKashem/SRMS.git
 ```
+Now enter the directory:  
 
+```bash
+cd SRMS
+```
+Now create a virtual machine:  
+```bash
+virtualenv venv  
+source venv/bin/activate
+```
 Install the requirements:
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirments.txt
 ```
 
 Apply the migrations:
 
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
